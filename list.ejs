@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todo list</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <div class="box">
+        <h1>Todo list</h1>
+    </div>
+    <div class="box">
+    
+   <% ejes.forEach(function(items){ %>
+    <form action="/delete" method="POST">
+        <div class="item">
+            <input type="checkbox" name="checkbox1" value="<%= items._id %>" onchange="this.form.submit()">
+            <p><%=  items.name %> </p>
+          </div>
+    </form>
+    
+   <% }) %>
+     
+        <form action="/" method="POST">
+
+            <input type="text" name="ele1" placeholder="Enter the task">
+            <button type="submit">+ </button>
+        </form>
+    </div>
+    
+</body>
+</html>
+
+<!-------const express = require("express");
+const bodyParser = require("body-parser");
+var app = express();
+app.set("view engine","ejs");
+app.use(express.urlencoded({extended:true}));
+app.use(express.static('public'));
+
+const mongoose = require("mongoose");
+mongoose.connect('mongodb://127.0.0.1:27017/todo').then(()=>console.log("database connected")).catch(err=>console.log(err));
+const trySchema = new mongoose.Schema({
+    name:String
+
+});
+const item = mongoose.model("task",trySchema);
+const todo = new item({
+    name : "Create some videos"
+});
+const todo2 = new item({
+    name : "Learn DSA"
+});
+const todo3 = new item({
+    name : "Learn React"
+});
+const todo4 = new item({
+    name : "Take some Rest"
+});
+//todo2.save();
+//todo3.save();
+//todo4.save();
+app.get("/",async function(req,res){
+  const foundItems = await item.find({})  
+  return res.render("list",{ejes : foundItems});
+});
+
+app.listen("8000",function(){
+   console.log("server is running");
+});
+Like in this code
+-->
